@@ -2,7 +2,7 @@
  * membuat componen footer
  * componen footer menampilkan konten footer
  */
- function Footer(){
+const Footer = () => {
     return(
         <footer>
             <h2>Copyright @ekaameliaa</h2>

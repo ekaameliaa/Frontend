@@ -3,7 +3,7 @@ import Hello from "./hello"
  * Membuat componen main
  * componen main menampung konten utama
  */
- function Main(){
+const Main = () => {
     return(
         <main>
             <Hello name = "Eka"/>

@@ -3,7 +3,7 @@
  * componen merender elemen
  */
 
- function Hello(props){
+const Hello = (props) => {
     //diluar return adalah js biasa
     //destruction
     const { name } = props;

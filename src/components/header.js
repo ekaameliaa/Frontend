@@ -2,7 +2,7 @@
  * membuat commponen header
  * menampilkan navigasi
  */
- function Header(){
+const Header = () => {
     return(
        <div>
            <nav>
