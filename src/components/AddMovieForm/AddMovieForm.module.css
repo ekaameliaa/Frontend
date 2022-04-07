@@ -39,6 +39,30 @@
   margin-top: 10px;
 }
 
+.form__url {
+  border: 1;
+  border-color: #4361ee;
+  border-radius: 10px;
+  width: 40%;
+  height: 30px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.form__select {
+  border: 1;
+  border-color: #4361ee;
+  border-radius: 10px;
+  width: 25%;
+  height: 30px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.alert{
+ color: brown;
+}
+
 .form__button {
   padding: 0.3rem 1rem;
   border: none;
