@@ -8,70 +8,94 @@ function Form(props){
 
     const { movies, setMovies } = props;
 
-    const [title, setTitle] = useState("");
-    const [date, setDate] = useState("")
-    const [poster, setPoster] = useState("")
-    const [film, setFilm] = useState("")
+    /** membuat state berdasarkan object */
+    const [formData, setFormData] = useState({
+        title: "",
+        date: "",
+        poster: "",
+        film: ""
+    })
 
-    //state untuk error title dan state
-    const [isTitleError, setIsTitleErorr] = useState(false)
-    const [isDateError, setIsDateErorr] = useState(false)
-    const [isPosterError, setIsPosterErorr] = useState(false)
-    const [isFilmError, setIsFilmErorr] = useState(false)
+    function handleChange(e){
 
-    function handleTitle(e){
-        setTitle(e.target.value);
+        /** destructing nama dan value */
+        const { name, value } = e.target;
+
+        /**
+         * Mengupdate state berupa object:
+         * - Menggunakan spread operator:
+         * - Update property berdasarkan apapun nilai name.
+         */
+
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
     }
 
-    function handleDate(e){
-        setDate(e.target.value);
+    /** dustructing title, date, poster, film */
+
+    const { title, date, poster, film } = formData;
+
+    /** membuat state erorr berdasarkan object */
+    const [ erorr, setErorr ] = useState({
+        isTitleError: false,
+        isDateError: false,
+        isPosterError: false,
+        isFilmError: false,
+    })
+
+    /** dusetructing isTitleError, isDateError, isPosterError, isFilmError */
+
+    const { isTitleError, isDateError, isPosterError, isFilmError } = erorr;
     
+    function validate(){
+        if (title === ""){
+            setErorr({...erorr, isTitleError: true});
+            return false;
+        }
+
+        else if(date === ""){
+            setErorr({...erorr, isDateError: true});
+            return false;
+        }
+
+        else if(poster === ""){
+            setErorr({...erorr, isPosterError: true});
+            return false;
+        }
+
+        else if(film === ""){
+            setErorr({...erorr, isFilmError: true});
+            return false;
+        }
+
+        else{
+            setErorr({...erorr, 
+            isTitleError: false,
+            isDateError: false,
+            isPosterError: false,
+            isFilmError: false, })
+            return true;
+        }
+
     }
 
-    function handlePoster(e){
-        setPoster(e.target.value);
-    }
+    function AddMovie(){
+        const movie = {
+            id: nanoid(), title: title,
+            year: date, 
+            type: film,
+            poster: poster
+        }
 
-    function handleFilm(e){
-        setFilm(e.target.value);
+        setMovies([...movies, movie]);
     }
 
     function handleSubmit(e) {
         e.preventDefault();
 
-        if (title === ""){
-            setIsTitleErorr(true);
-        }
-
-        else if(date === ""){
-            setIsDateErorr(true);
-        }
-
-        else if(poster === ""){
-            setIsPosterErorr(true);
-        }
-
-        else if(film === ""){
-            setIsFilmErorr(true);
-        }
-
-        else{
-            const movie = {
-                id: nanoid(), title: title,
-                year: date, 
-                type: film,
-                poster: poster
-            }
-    
-            setMovies([...movies, movie]);
-
-            setIsTitleErorr(false);
-            setIsDateErorr(false);
-            setIsPosterErorr(false);
-            setIsFilmErorr(false);
-        }
-
-        
+        validate() && AddMovie();
 
     }
 
@@ -90,7 +114,7 @@ function Form(props){
                     <form onSubmit={handleSubmit}>
                         <div className={styles.form__title}>
                             <label htmlFor="title" className={styles.form__label}>Title</label> <br />
-                            <input type="text" className={styles.form__input} id="title" value={title} onChange={handleTitle}/>
+                            <input type="text" className={styles.form__input} id="title" value={title} onChange={handleChange} name="title" />
                             {isTitleError && <Alert>Title Wajib diisi</Alert>}
                         </div>
                         <div>
@@ -100,28 +124,27 @@ function Form(props){
                             className={styles.form__input} 
                             id="date"
                              value={date} 
-                            onChange={handleDate} />
+                            onChange={handleChange}
+                            name="date" />
                             {isDateError && <Alert>Date wajib diisi</Alert>}                        
                         </div>
                         <div>
                             <label htmlFor="Url"className={styles.form__label}>Url Poster</label> <br />
-                            <input type="text" className={styles.form__url} value={poster} onChange={handlePoster}  />
-                            {isPosterError && <Alert>poster wajib diisi</Alert>}
-                            <select value={film} className={styles.form__select} onChange={handleFilm}>
+                            <input type="text" className={styles.form__url} value={poster} onChange={handleChange} name="poster"  />
+                            {isPosterError && <Alert>link poster wajib diisi</Alert>}
+                            <select value={film} className={styles.form__select} onChange={handleChange} name="film">
                                 <option value="Action">Genre Film</option>
                                 <option value="Drama">Drama</option>
                                 <option value="Horor">Horor</option>
                                 <option value="Comedy">Comedy</option>
                                 <option value="Romance">Romance</option>
                             </select>
-                            {isFilmError && <Alert>genre wajib pilih</Alert>}
+                            {isFilmError && <Alert className={styles.alert}>genre wajib pilih</Alert>}
                         </div>
                         <button type="submit" className={styles.form__button}>Submit</button>
                     </form>
                 </div>
-
             </section>
-
         </div>
     )
 }

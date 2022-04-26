@@ -12,11 +12,9 @@ function  Home(){
     const [movies, setMovies] = useState(data);
     return(
         <div>
-            <Navbar />
             <Hero />
             <Movies movies={movies} setMovies={setMovies} />
             <Form movies={movies} setMovies={setMovies} />
-            <Footer />
         </div>
     )
 }
