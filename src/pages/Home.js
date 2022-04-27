@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Form from "../components/AddMovieForm/AddMovieForm";
+import Counter from "../components/Counter";
 import Footer from "../components/Footer/Footer";
 import Hero from "../components/Hero/Hero";
 import Movies from "../components/Movies/Movies";
@@ -17,6 +18,9 @@ function  Home(){
             <Form movies={movies} setMovies={setMovies} />
         </div>
     )
+    // return(
+    //     <Counter />
+    // )
 }
 
 export default Home;
