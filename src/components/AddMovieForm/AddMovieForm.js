@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import Alert from '../Alert/Alert';
+import Button from '../UI/Button';
 import styles from './AddMovieForm.module.css'
 
 
@@ -141,7 +142,7 @@ function Form(props){
                             </select>
                             {isFilmError && <Alert className={styles.alert}>genre wajib pilih</Alert>}
                         </div>
-                        <button type="submit" className={styles.form__button}>Submit</button>
+                        <Button full>Submit</Button>
                     </form>
                 </div>
             </section>

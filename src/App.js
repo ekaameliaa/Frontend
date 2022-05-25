@@ -1,14 +1,17 @@
 import { Route, Routes } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 import CreateMovie from "./pages/Movie/Create";
 import NowPlaying from "./pages/Movie/NowPlaying";
 import PopularMovie from "./pages/Movie/Popular";
 import TopRatedMovie from "./pages/Movie/TopRated";
+import theme from "./utils/constants/theme";
 
 const App = () => {
   return (
     <div>
+      <ThemeProvider theme={theme}>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -18,6 +21,7 @@ const App = () => {
           <Route path="/movie/top" element={<TopRatedMovie />}></Route>
         </Routes>
       </Layout>
+      </ThemeProvider>
      
     </div>
   );
