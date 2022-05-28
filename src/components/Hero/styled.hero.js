@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledHero = styled.div`
   div {
       margin: 1rem;
-      flex-basis: 40%
+      flex-basis: 60% 100%;
   }
  
   section {
@@ -33,6 +33,10 @@ const StyledHero = styled.div`
   img {
     border: none;
     border-radius: 25px;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   @media (min-width: 992px) {

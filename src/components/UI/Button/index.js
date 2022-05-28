@@ -13,7 +13,6 @@ const Button = styled.button`
 
     //PROPS VARIANT
     background-color: ${({theme, variant}) => theme.colors[variant] || theme.colors.primary};
-
     font-size: ${(size) => {
         if(size === "sm"){
             return "0.8rem";
