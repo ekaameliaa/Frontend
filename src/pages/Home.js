@@ -14,7 +14,7 @@ function  Home(){
     return(
         <div>
             <Hero />
-            <Movies movies={movies} setMovies={setMovies} />
+            <Movies movies={movies} setMovies={setMovies} title={"Latest Movies"}/>
             <Form movies={movies} setMovies={setMovies} />
         </div>
     )
