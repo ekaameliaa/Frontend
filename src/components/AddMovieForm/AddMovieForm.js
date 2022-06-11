@@ -1,13 +1,16 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addMovie } from '../../features/movieSlice';
 import Alert from '../Alert/Alert';
 import Button from '../UI/Button';
 import styles from './AddMovieForm.module.css'
 
+function Form(){
 
-function Form(props){
-
-    const { movies, setMovies } = props;
+    const navigation = useNavigate();
+    const dispatch = useDispatch();
 
     /** membuat state berdasarkan object */
     const [formData, setFormData] = useState({
@@ -82,7 +85,7 @@ function Form(props){
 
     }
 
-    function AddMovie(){
+    function submitMovie(){
         const movie = {
             id: nanoid(), title: title,
             year: date, 
@@ -90,13 +93,15 @@ function Form(props){
             poster: poster
         }
 
-        setMovies([...movies, movie]);
+        dispatch(addMovie(movie));
+        console.log();
+        navigation("/");
     }
 
     function handleSubmit(e) {
         e.preventDefault();
 
-        validate() && AddMovie();
+        validate() && submitMovie();
 
     }
 
